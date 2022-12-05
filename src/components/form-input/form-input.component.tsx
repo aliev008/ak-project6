@@ -15,7 +15,14 @@ interface FormProps {
 const FormInput = ({ label, ...otherProps }: FormProps) => {
   return (
     <div className={`group`}>
-      <input className={`form-input`} {...otherProps} />
+      <input
+        readOnly
+        onFocus={(e: Event) =>
+          (e.target as HTMLInputElement).removeAttribute("readonly")
+        }
+        className={`form-input`}
+        {...otherProps}
+      />
       {label && (
         <label
           className={`${

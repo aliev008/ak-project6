@@ -26,15 +26,20 @@ export const SignInForm = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      const response: any = await signInUserWithEmailAndPassword(
-        email,
-        password
-      );
+      await signInUserWithEmailAndPassword(email, password);
       alert(`You successfully signed in!`);
       resetFormFields();
     } catch (error: any) {
-      if (error.code === "auth/wrong-password")
-        alert("Sorry, your password or e-mail is wrong.");
+      switch (error.code) {
+        case "auth/wrong-password":
+          alert("Sorry, password is incorrect for this e-mail.");
+          break;
+        case "auth/user-not-found":
+          alert("Sorry, no user associated with this e-mai  .");
+          break;
+        default:
+          console.log(error);
+      }
     }
   };
   return (
@@ -48,10 +53,6 @@ export const SignInForm = () => {
           name="email"
           value={email}
           onChange={handleChange}
-          readOnly
-          onFocus={(e: Event) =>
-            (e.target as HTMLInputElement).removeAttribute("readonly")
-          }
           required
         />
         <FormInput
