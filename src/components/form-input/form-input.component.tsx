@@ -2,11 +2,14 @@ import "./form-input.styles.scss";
 
 interface FormProps {
   label: string;
-  type: string;
-  name: string;
+  type?: string;
+  name?: string;
   value: string;
-  onChange: (event: any) => void;
-  required: boolean;
+  readOnly?: boolean | undefined;
+  onChange?: (event: any) => void;
+  onFocus?: any;
+  required?: boolean;
+  autoComplete?: string;
 }
 
 const FormInput = ({ label, ...otherProps }: FormProps) => {

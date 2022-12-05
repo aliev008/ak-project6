@@ -7,7 +7,10 @@ import {
   createUserDocumentFromAuth,
   auth,
 } from "../../utils/firebase/firebase.utils";
-import { SignUpForm } from "../../components";
+import { SignUpForm, SignInForm } from "../../components";
+import Button from "../../components/button/button.component";
+
+import "./authentification.styles.scss";
 
 const SignIn = () => {
   useEffect(() => {
@@ -26,16 +29,21 @@ const SignIn = () => {
 
   return (
     <>
-      <div>Sign In Form</div>
-      <button onClick={signInPopupHandler}>
-        Click here to Sign In with Pop Up
-      </button>
-      <br />
-      <button onClick={signInWithGoogleRedirect}>
-        Click here to Sign In with Redirect
-      </button>
-      <br/>
-      <SignUpForm />
+      <div className="google-signIn-container">
+        <h2>Sign In With Google Account</h2>
+        <Button buttonType="google" onClick={signInPopupHandler}>
+          Click here to Sign In with Pop Up
+        </Button>
+        <br />
+        <Button buttonType="google" onClick={signInWithGoogleRedirect}>
+          Click here to Sign In with Redirect
+        </Button>
+        <br />
+      </div>
+      <div className="forms-container">
+        <SignUpForm />
+        <SignInForm />
+      </div>
     </>
   );
 };

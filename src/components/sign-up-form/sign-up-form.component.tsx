@@ -6,6 +6,8 @@ import {
 } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../form-input/form-input.component";
+import Button from "../button/button.component";
+import './sign-up-form.styles.scss';
 
 const defaultFormFields = {
   displayName: "",
@@ -48,8 +50,9 @@ export const SignUpForm = () => {
   };
 
   return (
-    <div>
-      <h1>Sign Up Form</h1>
+    <div className="sign-up-container">
+      <h2>Don't have an account yet?</h2>
+      <span>Sign Up Form</span>
       <form onSubmit={handleSubmit}>
         <FormInput
           label="Enter Your Name"
@@ -83,7 +86,7 @@ export const SignUpForm = () => {
           onChange={handleChange}
           required
         />
-        <button type="submit">Submit</button>
+        <Button type="submit">Sign Up</Button>
       </form>
     </div>
   );
