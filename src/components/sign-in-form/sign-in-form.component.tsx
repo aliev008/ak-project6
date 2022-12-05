@@ -38,7 +38,7 @@ export const SignInForm = () => {
           alert("Sorry, no user associated with this e-mai  .");
           break;
         default:
-          console.log(error);
+          console.error(error);
       }
     }
   };
