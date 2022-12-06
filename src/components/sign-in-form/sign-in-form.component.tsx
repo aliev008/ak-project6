@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { signInUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
+import { UserContext } from "../../contexts/user.context";
+
+
 import "./sign-in-form.styles.scss";
 
 const defaultFormFields = {
@@ -13,6 +16,7 @@ const defaultFormFields = {
 export const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const {setCurrentUser} = useContext(UserContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -26,8 +30,9 @@ export const SignInForm = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      await signInUserWithEmailAndPassword(email, password);
+      const {user} = await signInUserWithEmailAndPassword(email, password);
       alert(`You successfully signed in!`);
+      setCurrentUser(user);
       resetFormFields();
     } catch (error: any) {
       switch (error.code) {
@@ -35,7 +40,7 @@ export const SignInForm = () => {
           alert("Sorry, password is incorrect for this e-mail.");
           break;
         case "auth/user-not-found":
-          alert("Sorry, no user associated with this e-mai  .");
+          alert("Sorry, no user associated with this e-mail.");
           break;
         default:
           console.error(error);
