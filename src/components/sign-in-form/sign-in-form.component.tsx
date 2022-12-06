@@ -5,7 +5,6 @@ import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 import { UserContext } from "../../contexts/user.context";
 
-
 import "./sign-in-form.styles.scss";
 
 const defaultFormFields = {
@@ -16,7 +15,7 @@ const defaultFormFields = {
 export const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
-  const {setCurrentUser} = useContext(UserContext);
+  const { setCurrentUser } = useContext(UserContext);
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -30,7 +29,7 @@ export const SignInForm = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      const {user} = await signInUserWithEmailAndPassword(email, password);
+      const { user } = await signInUserWithEmailAndPassword(email, password);
       alert(`You successfully signed in!`);
       setCurrentUser(user);
       resetFormFields();
