@@ -23,8 +23,7 @@ const SignIn = () => {
   }, []);
 
   const signInPopupHandler = async () => {
-    const { user } = await signInWithGooglePopup();
-    createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   return (
