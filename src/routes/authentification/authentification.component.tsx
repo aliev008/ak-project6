@@ -12,7 +12,7 @@ import Button from "../../components/button/button.component";
 
 import "./authentification.styles.scss";
 
-const SignIn = () => {
+export const Authentification = () => {
   useEffect(() => {
     (async () => {
       try {
@@ -46,5 +46,3 @@ const SignIn = () => {
     </>
   );
 };
-
-export default SignIn;

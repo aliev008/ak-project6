@@ -7,7 +7,7 @@ import { UserContext } from "../../contexts/user.context";
 
 import "./navigation.styles.scss";
 
-const Navigation = () => {
+export const Navigation = () => {
   const { currentUser } = useContext(UserContext);
 
   const signOutHandler = async () => {
@@ -41,5 +41,3 @@ const Navigation = () => {
     </>
   );
 };
-
-export default Navigation;

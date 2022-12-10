@@ -6,7 +6,7 @@ type DirectoryTypes = {
   imageUrl: string;
 }[];
 
-const Home = () => {
+export const Home = () => {
   const categories: DirectoryTypes = [
     {
       "id": 1,
@@ -39,5 +39,3 @@ const Home = () => {
     <Directory categories={categories}/>
   );
 };
-
-export default Home;
