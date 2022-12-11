@@ -2,10 +2,10 @@ import { createContext, useState } from "react";
 
 export const CartContext = createContext({
   cartIsOpen: null,
-  setCartStatus: (user: any) => null,
+  setCartStatus: (cart: any) => null,
 });
 
-export const CartProvider = ({ children }: any) => {
+export const CartProvider = ({ children }: {children: JSX.Element}) => {
   const [cartIsOpen, setCartStatus] = useState(false);
   const value: any = { cartIsOpen, setCartStatus };
 
