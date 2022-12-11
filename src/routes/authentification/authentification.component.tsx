@@ -12,7 +12,7 @@ import Button from "../../components/button/button.component";
 
 import "./authentification.styles.scss";
 
-const SignIn = () => {
+export const Authentification = () => {
   useEffect(() => {
     (async () => {
       try {
@@ -23,8 +23,7 @@ const SignIn = () => {
   }, []);
 
   const signInPopupHandler = async () => {
-    const { user } = await signInWithGooglePopup();
-    createUserDocumentFromAuth(user);
+    await signInWithGooglePopup();
   };
 
   return (
@@ -47,5 +46,3 @@ const SignIn = () => {
     </>
   );
 };
-
-export default SignIn;
