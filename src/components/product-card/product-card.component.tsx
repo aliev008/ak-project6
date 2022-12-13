@@ -14,7 +14,9 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 
   const addToCartHandler = () => {
     addItemToCart(product);
-    !isCartOpen && setCartStatus(!isCartOpen);
+    if (!isCartOpen) {
+      setCartStatus(true);
+    }
   };
 
   return (
