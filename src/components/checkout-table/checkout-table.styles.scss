@@ -1,0 +1,33 @@
+.table-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 1.5rem;
+
+    table {
+        width: 70%;
+        white-space: nowrap;
+        border-collapse: collapse;
+
+        tbody {
+            padding: 15px;
+        }
+
+
+        td,
+        th {
+            text-align: center;
+            padding: 15px;
+
+        }
+
+        img {
+            width: 200px;
+        }
+
+        .remove-button {
+            width: 30px;
+        }
+    }
+}
