@@ -14,10 +14,12 @@ export const CartContext = createContext({
 });
 
 const addCartItem = (cartItems: any, itemToAdd: CartItemInterface) => {
-  const itemExists = cartItems.some((cartItem: CartItemInterface) => cartItem.id === itemToAdd.id);
+  const itemExists = cartItems.some(
+    (cartItem: CartItemInterface) => cartItem.id === itemToAdd.id
+  );
   if (itemExists) {
     return cartItems.map((cartItem: CartItemInterface) =>
-    cartItem.id === itemToAdd.id
+      cartItem.id === itemToAdd.id
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : { ...cartItem }
     );
@@ -26,16 +28,17 @@ const addCartItem = (cartItems: any, itemToAdd: CartItemInterface) => {
 };
 
 const removeCartItem = (cartItems: any, itemToAdd: CartItemInterface) => {
-  return cartItems.filter((cartItem: CartItemInterface) => cartItem.id !== itemToAdd.id);
+  return cartItems.filter(
+    (cartItem: CartItemInterface) => cartItem.id !== itemToAdd.id
+  );
 };
 
-const increaseItemQuantity = (cartItems: any, item: CartItemInterface) => {
-  return cartItems.map((cartItem: CartItemInterface) => {
-    return cartItem.id === item.id
+const increaseItemQuantity = (cartItems: any, item: CartItemInterface) =>
+  cartItems.map((cartItem: CartItemInterface) =>
+    cartItem.id === item.id
       ? { ...cartItem, quantity: cartItem.quantity + 1 }
-      : { ...cartItem };
-  });
-};
+      : { ...cartItem }
+  );
 
 const decreaseItemQuantity = (cartItems: any, item: CartItemInterface) => {
   return cartItems
