@@ -4,9 +4,10 @@ import { CartContext } from "../../contexts/cart.context";
 import { CheckoutItem } from "../../components";
 
 import "./checkout-table.styles.scss";
+import { CartItemInterface } from "../../interfaces/interfaces";
 
 export const CheckoutTable = () => {
-  const { cartItems } = useContext(CartContext);
+  const { cartItems, totalPrice } = useContext(CartContext);
   return (
     <div className="table-container">
       <table>
@@ -20,11 +21,12 @@ export const CheckoutTable = () => {
           </tr>
         </thead>
         <tbody>
-          {cartItems.map((item: any) => (
-            <CheckoutItem key={item.id} product={item} />
+          {cartItems.map((cartItem: CartItemInterface) => (
+            <CheckoutItem key={cartItem.id} checkoutItem={cartItem} />
           ))}
         </tbody>
       </table>
+      <div className="total">Total Price: {totalPrice} $</div>
     </div>
   );
 };

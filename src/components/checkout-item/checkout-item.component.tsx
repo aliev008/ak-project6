@@ -1,24 +1,25 @@
 import { useContext } from "react";
 import { ReactComponent as RemoveSymbol } from "../../assets/x-symbol.svg";
 import { CartContext } from "../../contexts/cart.context";
+import { CartItemInterface } from "../../interfaces/interfaces";
 
 import "./checkout-item.styles.scss";
 
-export const CheckoutItem = ({ product }: any) => {
-  const { imageUrl, name, quantity, price } = product;
+export const CheckoutItem = ({ checkoutItem }: {checkoutItem: CartItemInterface}) => {
+  const { imageUrl, name, quantity, price } = checkoutItem;
   const { removeItemFromCart, incrementQuantity, decrementQuantity } =
     useContext(CartContext);
 
   const removeItem = () => {
-    removeItemFromCart(product);
+    removeItemFromCart(checkoutItem);
   };
 
   const increaseQuantity = () => {
-    incrementQuantity(product);
+    incrementQuantity(checkoutItem);
   };
 
   const decreaseQuantity = () => {
-    decrementQuantity(product);
+    decrementQuantity(checkoutItem);
   };
 
   return (
@@ -30,11 +31,11 @@ export const CheckoutItem = ({ product }: any) => {
         <td>{name}</td>
         <td>
           <span className="item-count-arrow" onClick={decreaseQuantity}>
-            &lt;
+            &#10094;
           </span>
           {quantity}
           <span className="item-count-arrow" onClick={increaseQuantity}>
-            &gt;
+          &#10095;
           </span>
         </td>
         <td>{price} $</td>

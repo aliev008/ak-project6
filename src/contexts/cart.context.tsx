@@ -1,50 +1,52 @@
 import { createContext, useState } from "react";
+import { CartItemInterface } from "../interfaces/interfaces";
 
 export const CartContext = createContext({
   isCartOpen: false,
   setCartStatus: (cart: any) => null,
   cartItems: [],
-  addItemToCart: (item: any) => {},
-  removeItemFromCart: (item: any) => {},
-  incrementQuantity: (item: any) => {},
-  decrementQuantity: (item: any) => {},
+  addItemToCart: (cartItem: CartItemInterface) => {},
+  removeItemFromCart: (cartItem: CartItemInterface) => {},
+  incrementQuantity: (cartItem: CartItemInterface) => {},
+  decrementQuantity: (cartItem: CartItemInterface) => {},
   totalItemsInCart: null,
+  totalPrice: null,
 });
 
-const addCartItem = (cartItems: any, itemToAdd: any) => {
-  const itemExists = cartItems.some((item: any) => item.id === itemToAdd.id);
+const addCartItem = (cartItems: any, itemToAdd: CartItemInterface) => {
+  const itemExists = cartItems.some((cartItem: CartItemInterface) => cartItem.id === itemToAdd.id);
   if (itemExists) {
-    return cartItems.map((item: any) =>
-      item.id === itemToAdd.id
-        ? { ...item, quantity: item.quantity + 1 }
-        : { ...item }
+    return cartItems.map((cartItem: CartItemInterface) =>
+    cartItem.id === itemToAdd.id
+        ? { ...cartItem, quantity: cartItem.quantity + 1 }
+        : { ...cartItem }
     );
   }
   return [...cartItems, { ...itemToAdd, quantity: 1 }];
 };
 
-const removeCartItem = (cartItems: any, itemToAdd: any) => {
-  return cartItems.filter((item: any) => item.id !== itemToAdd.id);
+const removeCartItem = (cartItems: any, itemToAdd: CartItemInterface) => {
+  return cartItems.filter((cartItem: CartItemInterface) => cartItem.id !== itemToAdd.id);
 };
 
-const increaseItemQuantity = (cartItems: any, item: any) => {
-  return cartItems.map((product: any) => {
-    return product.id === item.id
-      ? { ...product, quantity: product.quantity + 1 }
-      : { ...product };
+const increaseItemQuantity = (cartItems: any, item: CartItemInterface) => {
+  return cartItems.map((cartItem: CartItemInterface) => {
+    return cartItem.id === item.id
+      ? { ...cartItem, quantity: cartItem.quantity + 1 }
+      : { ...cartItem };
   });
 };
 
-const decreaseItemQuantity = (cartItems: any, item: any) => {
+const decreaseItemQuantity = (cartItems: any, item: CartItemInterface) => {
   return cartItems
-    .map((product: any) => {
-      return product.id === item.id
-        ? product.quantity > 1
-          ? { ...product, quantity: product.quantity - 1 }
+    .map((cartItem: CartItemInterface) => {
+      return cartItem.id === item.id
+        ? cartItem.quantity > 1
+          ? { ...cartItem, quantity: cartItem.quantity - 1 }
           : null
-        : { ...product };
+        : { ...cartItem };
     })
-    .filter((product: any) => product !== null);
+    .filter((cartIem: CartItemInterface) => cartIem !== null);
 };
 
 export const CartProvider = ({ children }: { children: JSX.Element }) => {
@@ -52,20 +54,25 @@ export const CartProvider = ({ children }: { children: JSX.Element }) => {
   const [cartItems, setCartItems] = useState([]);
 
   const totalItemsInCart = cartItems.reduce(
-    (acc, item: any) => acc + item.quantity,
+    (acc, item: CartItemInterface) => acc + item.quantity,
     0
   );
 
-  const addItemToCart = (itemToAdd: any) => {
+  const totalPrice = cartItems.reduce(
+    (acc, item: CartItemInterface) => acc + item.quantity * item.price,
+    0
+  );
+
+  const addItemToCart = (itemToAdd: CartItemInterface) => {
     setCartItems(addCartItem(cartItems, itemToAdd));
   };
-  const removeItemFromCart = (itemToRemove: any) => {
+  const removeItemFromCart = (itemToRemove: CartItemInterface) => {
     setCartItems(removeCartItem(cartItems, itemToRemove));
   };
-  const incrementQuantity = (item: any) => {
+  const incrementQuantity = (item: CartItemInterface) => {
     setCartItems(increaseItemQuantity(cartItems, item));
   };
-  const decrementQuantity = (item: any) => {
+  const decrementQuantity = (item: CartItemInterface) => {
     setCartItems(decreaseItemQuantity(cartItems, item));
   };
 
@@ -73,6 +80,7 @@ export const CartProvider = ({ children }: { children: JSX.Element }) => {
     isCartOpen,
     cartItems,
     totalItemsInCart,
+    totalPrice,
     setCartStatus,
     addItemToCart,
     removeItemFromCart,
