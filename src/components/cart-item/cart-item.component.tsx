@@ -2,8 +2,8 @@ import { CartItemInterface } from "../../interfaces/interfaces";
 
 import "./cart-item.styles.scss";
 
-export const CartItem = ({ product }: CartItemInterface) => {
-  const { imageUrl, price, name, quantity } = product;
+export const CartItem = ({ cartItem }: {cartItem: CartItemInterface}) => {
+  const { imageUrl, price, name, quantity } = cartItem;
   return (
     <div className="cart-item-container">
       <img src={imageUrl} alt={name} />

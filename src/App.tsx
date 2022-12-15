@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import { Shop, Home, Navigation, Authentification } from "./routes";
+import { Shop, Home, Navigation, Authentification, Checkout } from "./routes";
 
 const App = () => {
   return (
@@ -8,6 +8,7 @@ const App = () => {
         <Route index element={<Home />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/auth" element={<Authentification />} />
+        <Route path="/checkout" element={<Checkout />} />
       </Route>
     </Routes>
   );

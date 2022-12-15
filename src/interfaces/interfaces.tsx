@@ -7,6 +7,10 @@ export interface ProductInterface {
 }
 
 export interface CartItemInterface {
-  product: ProductInterface;
-  quantity?: number;
+  id: number;
+  name: string;
+  imageUrl: string;
+  price: number;
+  quantity: number;
 }
+
