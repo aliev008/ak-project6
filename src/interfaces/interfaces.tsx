@@ -21,12 +21,11 @@ export interface CategoryInterface {
     name: string;
     imageUrl: string;
     price: number;
-  } [];
+  }[];
   products?: {
     id: number;
     name: string;
     imageUrl: string;
     price: number;
-  } [] | undefined;
-
+  }[];
 }

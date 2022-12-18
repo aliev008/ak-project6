@@ -1,3 +1,5 @@
+@use "../../sass/modules/functions" as *;
+
 .cart-item-container {
     width: 100%;
     display: flex;
@@ -17,7 +19,7 @@
         padding: 10px 20px;
 
         .name {
-            font-size: 16px;
+            font-size: toRem(16);
         }
     }
 }

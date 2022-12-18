@@ -1,3 +1,5 @@
+@use "../../sass/modules/functions" as *;
+
 .button-container {
     min-width: 165px;
     width: auto;
@@ -5,7 +7,7 @@
     letter-spacing: 0.5px;
     line-height: 50px;
     padding: 0 35px;
-    font-size: 15px;
+    font-size: toRem(15);
     background-color: black;
     color: white;
     text-transform: uppercase;

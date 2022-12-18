@@ -1,9 +1,11 @@
+@use "../../sass/modules/functions" as *;
+
 $sub-color: grey;
 $main-color: black;
 
 @mixin shrinkLabel {
   top: -14px;
-  font-size: 12px;
+  font-size: toRem(12);
   color: $main-color;
 }
 
@@ -15,7 +17,7 @@ $main-color: black;
     background: none;
     background-color: white;
     color: $sub-color;
-    font-size: 18px;
+    font-size: toRem(18);
     padding: 10px 10px 10px 5px;
     display: block;
     width: 100%;
@@ -28,7 +30,7 @@ $main-color: black;
       outline: none;
     }
 
-    &:focus ~ .form-input-label {
+    &:focus~.form-input-label {
       @include shrinkLabel();
     }
   }
@@ -39,7 +41,7 @@ $main-color: black;
 
   .form-input-label {
     color: $sub-color;
-    font-size: 16px;
+    font-size: toRem(16);
     font-weight: normal;
     position: absolute;
     pointer-events: none;

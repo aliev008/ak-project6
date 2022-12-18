@@ -1,9 +1,11 @@
+@use "../../sass/modules/functions" as *;
+
 .table-container {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    font-size: 1.5rem;
+    font-size: toRem(24);
     width: 70%;
 
     table {
@@ -41,6 +43,6 @@
     .total {
         margin-top: 30px;
         margin-left: auto;
-        font-size: 36px;
+        font-size: toRem(36);
     }
 }

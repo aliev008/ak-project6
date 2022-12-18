@@ -1,3 +1,5 @@
+@use "../../sass/modules/functions" as *;
+
 .cart-icon-container {
     width: 45px;
     height: 45px;
@@ -14,7 +16,7 @@
   
     .item-count {
       position: absolute;
-      font-size: 10px;
+      font-size: toRem(10);
       font-weight: bold;
       bottom: 12px;
     }

@@ -23,11 +23,13 @@ export const CategoryPreview = ({ title, products }: CategoryInterface) => {
       </h2>
       <div className="preview">
         {products &&
-          products
-            .filter((_: any, index: any) => index < 4)
-            .map((product: ProductInterface) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
+          products.map((product: ProductInterface, index: number) => {
+            if (index < 4) {
+              return <ProductCard key={product.id} product={product} />;
+            } else {
+              return null;
+            }
+          })}
       </div>
     </div>
   );
