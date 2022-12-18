@@ -11,8 +11,6 @@ export const Category = () => {
   const { categoriesMap } = useContext(CategoriesContext);
   const [products, setProducts] = useState([]);
 
-  console.log({category});
-
   useEffect(() => {
     setProducts(categoriesMap[category as keyof typeof categoriesMap]);
   }, [categoriesMap, category]);
