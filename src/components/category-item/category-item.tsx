@@ -6,7 +6,7 @@ interface CategoryProps {
     imageUrl: string;
 }
 
-export const Category = ({ category }: {category: CategoryProps}) => {
+export const CategoryItem = ({ category }: {category: CategoryProps}) => {
   const { id, imageUrl, title} = category;
   return (
     <div className="category-container" key={id}>
