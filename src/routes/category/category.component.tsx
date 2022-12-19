@@ -16,11 +16,18 @@ export const Category = () => {
   }, [categoriesMap, category]);
 
   return (
-    <div className="category-page-container">
+    <>
+    <h2 className="category-title">
+      <span>
+        {category?.toUpperCase()}
+      </span>
+    </h2>
+    <div className="category-container">
       {products &&
         products.map((product: ProductInterface) => {
           return <ProductCard key={product.id} product={product} />;
         })}
     </div>
+    </>
   );
 };
