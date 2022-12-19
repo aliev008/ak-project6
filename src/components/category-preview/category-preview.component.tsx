@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { ProductCard } from "../product-card/product-card.component";
 
 import {
@@ -8,18 +8,12 @@ import {
 import "./category-preview.styles.scss";
 
 export const CategoryPreview = ({ title, products }: CategoryInterface) => {
-  const navigate = useNavigate();
-
-  const goToCategoryHandler = () => {
-    navigate(`/shop/${title}`);
-  };
-
   return (
     <div className="category-preview-container">
       <h2>
-        <span className="title" onClick={goToCategoryHandler}>
-          {title.toUpperCase()}
-        </span>
+        <Link to={title}>
+          <span className="title">{title.toUpperCase()}</span>
+        </Link>
       </h2>
       <div className="preview">
         {products &&
