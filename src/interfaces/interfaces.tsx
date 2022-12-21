@@ -29,3 +29,9 @@ export interface CategoryInterface {
     price: number;
   }[];
 }
+
+export type DirectoryType = {
+  title: string;
+  id: number;
+  imageUrl: string;
+}[];

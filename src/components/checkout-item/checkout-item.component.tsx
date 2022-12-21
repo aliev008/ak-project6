@@ -3,7 +3,7 @@ import { ReactComponent as RemoveSymbol } from "../../assets/x-symbol.svg";
 import { CartContext } from "../../contexts/cart.context";
 import { CartItemInterface } from "../../interfaces/interfaces";
 
-import "./checkout-item.styles.scss";
+import { CountArrow } from "./checkout-item.styles";
 
 export const CheckoutItem = ({ checkoutItem }: {checkoutItem: CartItemInterface}) => {
   const { imageUrl, name, quantity, price } = checkoutItem;
@@ -30,13 +30,13 @@ export const CheckoutItem = ({ checkoutItem }: {checkoutItem: CartItemInterface}
         </td>
         <td>{name}</td>
         <td>
-          <span className="item-count-arrow" onClick={decreaseQuantity}>
+          <CountArrow onClick={decreaseQuantity}>
             &#10094;
-          </span>
+          </CountArrow>
           {quantity}
-          <span className="item-count-arrow" onClick={increaseQuantity}>
+          <CountArrow onClick={increaseQuantity}>
           &#10095;
-          </span>
+          </CountArrow>
         </td>
         <td>{price} $</td>
         <td>

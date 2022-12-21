@@ -1,4 +1,4 @@
-import "./form-input.styles.scss";
+import { Group, FormInputLabel, Input } from "./form-input.styles";
 
 interface FormProps {
   label: string;
@@ -14,25 +14,20 @@ interface FormProps {
 
 const FormInput = ({ label, ...otherProps }: FormProps) => {
   return (
-    <div className={`group`}>
-      <input
+    <Group>
+      <Input
         readOnly
         onFocus={(e: Event) =>
           (e.target as HTMLInputElement).removeAttribute("readonly")
         }
-        className={`form-input`}
         {...otherProps}
       />
       {label && (
-        <label
-          className={`${
-            otherProps.value.length ? "shrink" : ""
-          } form-input-label`}
-        >
+        <FormInputLabel shrink={otherProps.value.length}>
           {label}
-        </label>
+        </FormInputLabel>
       )}
-    </div>
+    </Group>
   );
 };
 

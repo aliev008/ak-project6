@@ -1,17 +1,17 @@
-@use "../../sass/modules/functions" as *;
+import styled from "styled-components";
 
-.forms-container {
+export const FormsContainer = styled.div`
     display: flex;
     width: 70%;
     margin: 0 auto;
     justify-content: space-around;
-}
+`
 
-.google-signIn-container {
+export const GoogleSignInContainer = styled.div`
     display: flex;
     flex-direction: column;
     width: 100%;
     justify-content: center;
     align-items: center;
     margin-bottom: 50px;
-}
+`

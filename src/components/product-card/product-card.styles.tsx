@@ -1,6 +1,7 @@
-@use "../../sass/modules/functions" as *;
+import styled from "styled-components";
+import { pixelsToRem } from "../../utils/styles/pixelsToRem";
 
-.product-card-container {
+export const ProductCardContainer = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
@@ -39,7 +40,7 @@
         height: 5%;
         display: flex;
         justify-content: space-between;
-        font-size: toRem(18);
+        font-size: ${pixelsToRem(18)};
 
         .name {
             width: 90%;
@@ -50,4 +51,4 @@
             width: 10%;
         }
     }
-}
+`

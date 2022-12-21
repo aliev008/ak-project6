@@ -1,11 +1,11 @@
 import { CartItemInterface } from "../../interfaces/interfaces";
 
-import "./cart-item.styles.scss";
+import { CartItemContainer } from "./cart-item.styles";
 
 export const CartItem = ({ cartItem }: {cartItem: CartItemInterface}) => {
   const { imageUrl, price, name, quantity } = cartItem;
   return (
-    <div className="cart-item-container">
+    <CartItemContainer>
       <img src={imageUrl} alt={name} />
       <div className="item-details">
         <span className="name">{name}</span>
@@ -13,6 +13,6 @@ export const CartItem = ({ cartItem }: {cartItem: CartItemInterface}) => {
           {quantity} * {price} $
         </span>
       </div>
-    </div>
+    </CartItemContainer>
   );
 };

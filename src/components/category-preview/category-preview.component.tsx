@@ -5,11 +5,11 @@ import {
   CategoryInterface,
   ProductInterface,
 } from "../../interfaces/interfaces";
-import "./category-preview.styles.scss";
+import { CategoryPreviewContainer } from "./category-preview.styles";
 
 export const CategoryPreview = ({ title, products }: CategoryInterface) => {
   return (
-    <div className="category-preview-container">
+    <CategoryPreviewContainer>
       <h2>
         <Link to={title}>
           <span className="title">{title.toUpperCase()}</span>
@@ -25,6 +25,6 @@ export const CategoryPreview = ({ title, products }: CategoryInterface) => {
             }
           })}
       </div>
-    </div>
+    </CategoryPreviewContainer>
   );
 };
