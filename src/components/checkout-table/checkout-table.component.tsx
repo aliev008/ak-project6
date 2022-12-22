@@ -3,14 +3,14 @@ import { CartContext } from "../../contexts/cart.context";
 
 import { CheckoutItem } from "../../components";
 
-import { TableContainer } from "./checkout-table.styles";
+import { TableContainer, Table, Total } from "./checkout-table.styles";
 import { CartItemInterface } from "../../interfaces/interfaces";
 
 export const CheckoutTable = () => {
   const { cartItems, totalPrice } = useContext(CartContext);
   return (
     <TableContainer>
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>Product</th>
@@ -25,8 +25,8 @@ export const CheckoutTable = () => {
             <CheckoutItem key={cartItem.id} checkoutItem={cartItem} />
           ))}
         </tbody>
-      </table>
-      <div className="total">Total Price: {totalPrice} $</div>
+      </Table>
+      <Total className="total">Total Price: {totalPrice} $</Total>
     </TableContainer>
   );
 };

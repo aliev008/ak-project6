@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { CartContext } from "../../contexts/cart.context";
 import { Button } from "../button/button.component";
 
-import { ProductCardContainer } from "./product-card.styles";
+import { ProductCardContainer, Footer } from "./product-card.styles";
 
 interface ProductCardProps {
   product: any;
@@ -22,10 +22,10 @@ export const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <ProductCardContainer>
       <img src={imageUrl} alt={name} />
-      <div className="footer">
+      <Footer>
         <span className="name">{name}</span>
         <span className="price">{price} $</span>
-      </div>
+      </Footer>
       <Button onClick={addToCartHandler} buttonType="inverted">
         ADD TO CARD
       </Button>

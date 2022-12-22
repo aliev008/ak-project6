@@ -5,17 +5,17 @@ import {
   CategoryInterface,
   ProductInterface,
 } from "../../interfaces/interfaces";
-import { CategoryPreviewContainer } from "./category-preview.styles";
+import { CategoryPreviewContainer, Title, Preview } from "./category-preview.styles";
 
 export const CategoryPreview = ({ title, products }: CategoryInterface) => {
   return (
     <CategoryPreviewContainer>
       <h2>
         <Link to={title}>
-          <span className="title">{title.toUpperCase()}</span>
+          <Title className="title">{title.toUpperCase()}</Title>
         </Link>
       </h2>
-      <div className="preview">
+      <Preview>
         {products &&
           products.map((product: ProductInterface, index: number) => {
             if (index < 4) {
@@ -24,7 +24,7 @@ export const CategoryPreview = ({ title, products }: CategoryInterface) => {
               return null;
             }
           })}
-      </div>
+      </Preview>
     </CategoryPreviewContainer>
   );
 };
