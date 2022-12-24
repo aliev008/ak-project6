@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { Outlet } from "react-router-dom";
 
 import { signOutUser } from "../../utils/firebase/firebase.utils";
-import { UserContext } from "../../contexts/user.context";
+// import { UserContext } from "../../contexts/user.context";
 import { CartContext } from "../../contexts/cart.context";
 
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
@@ -15,15 +15,17 @@ import {
   NavLink,
   Logo,
 } from "./navigation.styles";
+import { useSelector } from "react-redux";
+import { setCurrentUser } from "../../store/user/user.selector";
 
 export const Navigation = () => {
-  const { currentUser } = useContext(UserContext);
+  const currentUser = useSelector(setCurrentUser);
   const { isCartOpen } = useContext(CartContext);
 
   const signOutHandler = async () => {
     await signOutUser();
   };
-
+  console.log({currentUser});
   return (
     <>
       <NavigationContainer>

@@ -3,10 +3,12 @@ import { BrowserRouter } from "react-router-dom";
 
 import "./index.scss";
 import App from "./App";
-import { UserProvider } from "./contexts/user.context";
+// import { UserProvider } from "./contexts/user.context";
 import reportWebVitals from "./reportWebVitals";
 import { CategoriesProvider } from "./contexts/categories.context";
 import { CartProvider } from "./contexts/cart.context";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,13 +16,15 @@ const root = ReactDOM.createRoot(
 root.render(
   // <React.StrictMode>
   <BrowserRouter>
-    <UserProvider>
-      <CategoriesProvider>
-        <CartProvider>
-        <App />
-        </CartProvider>
-      </CategoriesProvider>
-    </UserProvider>
+    <Provider store={store}>
+      {/* <UserProvider> */}
+        <CategoriesProvider>
+          <CartProvider>
+            <App />
+          </CartProvider>
+        </CategoriesProvider>
+      {/* </UserProvider> */}
+    </Provider>
   </BrowserRouter>
   // </React.StrictMode>
 );
