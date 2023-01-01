@@ -5,10 +5,25 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 import { ReactComponent as CrownLogo } from "../../assets/crown.svg";
 import { UserContext } from "../../contexts/user.context";
 
+<<<<<<< Updated upstream
 import "./navigation.styles.scss";
 
 export const Navigation = () => {
   const { currentUser } = useContext(UserContext);
+=======
+import {
+  NavigationContainer,
+  NavLinksContainer,
+  NavLink,
+  Logo,
+} from "./navigation.styles";
+import { useSelector } from "react-redux";
+import { selectCurrentUser } from "../../store/user/user.selector";
+
+export const Navigation = () => {
+  const currentUser = useSelector(selectCurrentUser);
+  const { isCartOpen } = useContext(CartContext);
+>>>>>>> Stashed changes
 
   const signOutHandler = async () => {
     await signOutUser();

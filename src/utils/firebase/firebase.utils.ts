@@ -84,4 +84,34 @@ export const createAuthUserWithEmailAndPassword = async (
 
  export const onUserAuthStateChanged = (callback: any) => {
   onAuthStateChanged(auth, callback);
+<<<<<<< Updated upstream
  }
+=======
+};
+
+export const addCollectionAndDocuments = async (
+  collectionKey: string,
+  objectsToAdd: any
+) => {
+  const collectionRef = collection(db, collectionKey);
+  const batch = writeBatch(db);
+
+  objectsToAdd.forEach((object: any) => {
+    const docRef = doc(collectionRef, object.title.toLowerCase());
+    batch.set(docRef, object);
+  });
+
+  await batch.commit();
+};
+
+export const getCategoriesAndDocuments = async () => {
+  const collectionRef = collection(db, "categories");
+  const q = query(collectionRef);
+
+  const querySnapshot = await getDocs(q);
+
+  const categoryMap = querySnapshot.docs.map((snaphot) => snaphot.data());
+
+  return categoryMap;
+};
+>>>>>>> Stashed changes

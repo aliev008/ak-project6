@@ -6,7 +6,13 @@ import "./index.scss";
 import App from "./App";
 import { UserProvider } from "./contexts/user.context";
 import reportWebVitals from "./reportWebVitals";
+<<<<<<< Updated upstream
 import { ProductsProvider } from "./contexts/products.context";
+=======
+import { CartProvider } from "./contexts/cart.context";
+import { Provider } from "react-redux";
+import { store } from "./store/store";
+>>>>>>> Stashed changes
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
@@ -14,11 +20,19 @@ const root = ReactDOM.createRoot(
 root.render(
   // <React.StrictMode>
   <BrowserRouter>
+<<<<<<< Updated upstream
     <UserProvider>
       <ProductsProvider>
         <App />
       </ProductsProvider>
     </UserProvider>
+=======
+    <Provider store={store}>
+          <CartProvider>
+            <App />
+          </CartProvider>
+    </Provider>
+>>>>>>> Stashed changes
   </BrowserRouter>
   // </React.StrictMode>
 );
