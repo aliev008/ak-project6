@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { ProductsContext } from "../../contexts/products.context";
+import { Routes, Route } from "react-router-dom";
+import { Category } from "../category/category.component";
 
 <<<<<<< Updated upstream
 import { ProductCard } from "../../components/product-card/product-card.component";
@@ -35,11 +35,11 @@ export const Shop = () => {
 
 >>>>>>> Stashed changes
   return (
-    <div className="products-container">
-      {products &&
-        (products as any).map((product: Product) => {
-          return <ProductCard key={product.id} product={product} />;
-        })}
-    </div>
+    <>
+      <Routes>
+        <Route index element={<CategoriesPreview />}></Route>
+        <Route path=":category" element={<Category />}></Route>
+      </Routes>
+    </>
   );
 };

@@ -8,9 +8,12 @@ import {
   auth,
 } from "../../utils/firebase/firebase.utils";
 import { SignUpForm, SignInForm } from "../../components";
-import Button from "../../components/button/button.component";
+import { Button } from "../../components/button/button.component";
 
-import "./authentification.styles.scss";
+import {
+  FormsContainer,
+  GoogleSignInContainer,
+} from "./authentification.styles";
 
 export const Authentification = () => {
   useEffect(() => {
@@ -28,7 +31,7 @@ export const Authentification = () => {
 
   return (
     <>
-      <div className="google-signIn-container">
+      <GoogleSignInContainer>
         <h2>Sign In With Google Account</h2>
         <Button buttonType="google" onClick={signInPopupHandler}>
           Click here to Sign In with Pop Up
@@ -38,11 +41,11 @@ export const Authentification = () => {
           Click here to Sign In with Redirect
         </Button>
         <br />
-      </div>
-      <div className="forms-container">
+      </GoogleSignInContainer>
+      <FormsContainer>
         <SignUpForm />
         <SignInForm />
-      </div>
+      </FormsContainer>
     </>
   );
 };

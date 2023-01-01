@@ -2,9 +2,9 @@ import { useState } from "react";
 import { signInUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../form-input/form-input.component";
-import Button from "../button/button.component";
+import { Button } from "../button/button.component";
 
-import "./sign-in-form.styles.scss";
+import { SignInContainer } from "./sign-in-form.styles";
 
 const defaultFormFields = {
   email: "",
@@ -44,7 +44,7 @@ export const SignInForm = () => {
     }
   };
   return (
-    <div className="sign-in-container">
+    <SignInContainer>
       <h2>Have an accont?</h2>
       <span>Sign In</span>
       <form autoComplete="disabled" onSubmit={handleSubmit}>
@@ -67,6 +67,6 @@ export const SignInForm = () => {
         />
         <Button type="submit">Sign In</Button>
       </form>
-    </div>
+    </SignInContainer>
   );
 };

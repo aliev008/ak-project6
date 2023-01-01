@@ -5,6 +5,7 @@ import {
   CategoryInterface,
   ProductInterface,
 } from "../../interfaces/interfaces";
+
 import {
   CategoryPreviewContainer,
   Title,

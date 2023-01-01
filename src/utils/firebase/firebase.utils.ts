@@ -7,15 +7,17 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  onAuthStateChanged
-
-  
+  onAuthStateChanged,
 } from "firebase/auth";
 import {
   getFirestore,
   doc,
   getDoc,
   setDoc,
+  collection,
+  writeBatch,
+  query,
+  getDocs,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -74,15 +76,18 @@ export const createAuthUserWithEmailAndPassword = async (
   return await createUserWithEmailAndPassword(auth, email, password);
 };
 
- export const signInUserWithEmailAndPassword = async(email: string, password: string) => {
+export const signInUserWithEmailAndPassword = async (
+  email: string,
+  password: string
+) => {
   return await signInWithEmailAndPassword(auth, email, password);
- }
+};
 
- export const signOutUser = async () => {
+export const signOutUser = async () => {
   await signOut(auth);
- }
+};
 
- export const onUserAuthStateChanged = (callback: any) => {
+export const onUserAuthStateChanged = (callback: any) => {
   onAuthStateChanged(auth, callback);
 <<<<<<< Updated upstream
  }

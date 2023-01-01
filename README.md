@@ -4,4 +4,4 @@ This project is a pet Project.
 
 ## Demo of the Project
 
-[Click to view](https://curious-kringle-1a2861.netlify.app/).
+[Click to view](https://ak-project6.netlify.app).
