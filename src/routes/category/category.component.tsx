@@ -7,14 +7,11 @@ import { CategoryContainer, Title } from "./category.styles";
 import { useSelector } from "react-redux";
 import { selectCategoriesMap } from "../../store/category/category.selector";
 
-export const Category = () => {
-  console.log(`Category component rendered / re-rendered`);
-  const { category } = useParams();
+export const Category = () => {  const { category } = useParams();
   const categoriesMap = useSelector(selectCategoriesMap);
   const [products, setProducts] = useState(categoriesMap[category as keyof typeof categoriesMap]);
 
   useEffect(() => {
-    console.log(`Category component useEffect fired up`);
     setProducts(categoriesMap[category as keyof typeof categoriesMap]);
   }, [categoriesMap, category]);
 

@@ -89,9 +89,6 @@ export const signOutUser = async () => {
 
 export const onUserAuthStateChanged = (callback: any) => {
   onAuthStateChanged(auth, callback);
-<<<<<<< Updated upstream
- }
-=======
 };
 
 export const addCollectionAndDocuments = async (
@@ -119,4 +116,3 @@ export const getCategoriesAndDocuments = async () => {
 
   return categoryMap;
 };
->>>>>>> Stashed changes

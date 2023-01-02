@@ -1,25 +1,32 @@
-import { useContext } from "react";
+import { useDispatch } from "react-redux";
 import { ReactComponent as RemoveSymbol } from "../../assets/x-symbol.svg";
-import { CartContext } from "../../contexts/cart.context";
 import { CartItemInterface } from "../../interfaces/interfaces";
+import {
+  decrementQuantity,
+  incrementQuantity,
+  removeItemFromCart,
+} from "../../store/cart/cart.action";
 
 import { CountArrow } from "./checkout-item.styles";
 
-export const CheckoutItem = ({ checkoutItem }: {checkoutItem: CartItemInterface}) => {
+export const CheckoutItem = ({
+  checkoutItem,
+}: {
+  checkoutItem: CartItemInterface;
+}) => {
   const { imageUrl, name, quantity, price } = checkoutItem;
-  const { removeItemFromCart, incrementQuantity, decrementQuantity } =
-    useContext(CartContext);
+  const dispatch = useDispatch();
 
   const removeItem = () => {
-    removeItemFromCart(checkoutItem);
+    dispatch(removeItemFromCart(checkoutItem));
   };
 
   const increaseQuantity = () => {
-    incrementQuantity(checkoutItem);
+    dispatch(incrementQuantity(checkoutItem));
   };
 
   const decreaseQuantity = () => {
-    decrementQuantity(checkoutItem);
+    dispatch(decrementQuantity(checkoutItem));
   };
 
   return (
@@ -30,13 +37,9 @@ export const CheckoutItem = ({ checkoutItem }: {checkoutItem: CartItemInterface}
         </td>
         <td>{name}</td>
         <td>
-          <CountArrow onClick={decreaseQuantity}>
-            &#10094;
-          </CountArrow>
+          <CountArrow onClick={decreaseQuantity}>&#10094;</CountArrow>
           {quantity}
-          <CountArrow onClick={increaseQuantity}>
-          &#10095;
-          </CountArrow>
+          <CountArrow onClick={increaseQuantity}>&#10095;</CountArrow>
         </td>
         <td>{price} $</td>
         <td>

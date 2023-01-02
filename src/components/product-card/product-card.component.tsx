@@ -1,5 +1,6 @@
-import { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
+import { useDispatch, useSelector } from "react-redux";
+import { addItemToCart, setCartStatus } from "../../store/cart/cart.action";
+import { selectCartStatus } from "../../store/cart/cart.selector";
 import { Button } from "../button/button.component";
 
 import { ProductCardContainer, Footer } from "./product-card.styles";
@@ -10,12 +11,13 @@ interface ProductCardProps {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
   const { name, imageUrl, price } = product;
-  const { addItemToCart, isCartOpen, setCartStatus } = useContext(CartContext);
+  const dispatch = useDispatch();
+  const isCartOpen = useSelector(selectCartStatus);
 
   const addToCartHandler = () => {
-    addItemToCart(product);
+    dispatch(addItemToCart(product));
     if (!isCartOpen) {
-      setCartStatus(true);
+      dispatch(setCartStatus(true));
     }
   };
 
