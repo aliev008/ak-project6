@@ -1,4 +1,31 @@
-export const selectCartStatus = (state: any): any => state.cart.isCartOpen;
-export const selectTotalItemsInCart = (state: any): any => state.cart.totalItemsInCart;
-export const selectCartItems = (state: any): any => state.cart.cartItems;
-export const selectTotalPrice = (state: any): any => state.cart.totalPrice;
+import { createSelector } from "reselect";
+import { CartItemInterface } from "../../interfaces/interfaces";
+
+const selectCartReducer = (state: any) => state.cart;
+export const selectCartItems = createSelector([selectCartReducer], (cart) => {
+  return cart.cartItems;
+});
+
+export const selectCartStatus = createSelector([selectCartReducer], (cart) => {
+  return cart.isCartOpen;
+});
+
+export const selectTotalItemsInCart = createSelector(
+  [selectCartItems],
+  (cartItems) => {
+    return cartItems.reduce(
+      (acc: any, item: CartItemInterface) => acc + item.quantity,
+      0
+    );
+  }
+);
+
+export const selectTotalPrice = createSelector(
+  [selectCartItems],
+  (cartItems) => {
+    return cartItems.reduce(
+      (acc: any, item: CartItemInterface) => acc + item.quantity * item.price,
+      0
+    );
+  }
+);

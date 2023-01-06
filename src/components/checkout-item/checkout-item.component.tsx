@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as RemoveSymbol } from "../../assets/x-symbol.svg";
 import { CartItemInterface } from "../../interfaces/interfaces";
 import {
@@ -6,6 +6,7 @@ import {
   incrementQuantity,
   removeItemFromCart,
 } from "../../store/cart/cart.action";
+import { selectCartItems } from "../../store/cart/cart.selector";
 
 import { CountArrow } from "./checkout-item.styles";
 
@@ -15,18 +16,19 @@ export const CheckoutItem = ({
   checkoutItem: CartItemInterface;
 }) => {
   const { imageUrl, name, quantity, price } = checkoutItem;
+  const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
 
   const removeItem = () => {
-    dispatch(removeItemFromCart(checkoutItem));
+    dispatch(removeItemFromCart(cartItems, checkoutItem));
   };
 
   const increaseQuantity = () => {
-    dispatch(incrementQuantity(checkoutItem));
+    dispatch(incrementQuantity(cartItems, checkoutItem));
   };
 
   const decreaseQuantity = () => {
-    dispatch(decrementQuantity(checkoutItem));
+    dispatch(decrementQuantity(cartItems, checkoutItem));
   };
 
   return (

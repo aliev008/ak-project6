@@ -5,29 +5,31 @@ import {
   addCartItem,
   decreaseItemQuantity,
   increaseItemQuantity,
-  makeCartItemsPayload,
   removeCartItem,
 } from "./utils/functions";
 
 export const setCartStatus = (newStatus: boolean) =>
   createAction(CART_ACTION_TYPES.SET_CART_STATUS, newStatus);
 
-export const addItemToCart = (itemToAdd: CartItemInterface) => {
-  const payload = makeCartItemsPayload(addCartItem(itemToAdd));
-  return createAction(CART_ACTION_TYPES.ADD_ITEM_TO_CART, payload);
+export const addItemToCart = (cartItems: any, itemToAdd: CartItemInterface) => {
+  const payload = addCartItem(cartItems, itemToAdd);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, payload);
 };
 
-export const removeItemFromCart = (itemToRemove: CartItemInterface) => {
-  const payload = makeCartItemsPayload(removeCartItem(itemToRemove));
-  return createAction(CART_ACTION_TYPES.REMOVE_ITEM_FROM_CART, payload);
+export const removeItemFromCart = (
+  cartItems: any,
+  itemToRemove: CartItemInterface
+) => {
+  const payload = removeCartItem(cartItems, itemToRemove);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, payload);
 };
 
-export const incrementQuantity = (item: CartItemInterface) => {
-  const payload = makeCartItemsPayload(increaseItemQuantity(item));
-  return createAction(CART_ACTION_TYPES.INCREMENT_ITEM_QUANTITY, payload);
+export const incrementQuantity = (cartItems: any, item: CartItemInterface) => {
+  const payload = increaseItemQuantity(cartItems, item);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, payload);
 };
 
-export const decrementQuantity = (item: CartItemInterface) => {
-  const payload = makeCartItemsPayload(decreaseItemQuantity(item));
-  return createAction(CART_ACTION_TYPES.DECREMENT_ITEM_QUANTITY, payload);
+export const decrementQuantity = (cartItems: any, item: CartItemInterface) => {
+  const payload = decreaseItemQuantity(cartItems, item);
+  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, payload);
 };

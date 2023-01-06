@@ -7,29 +7,34 @@ const INITIAL_STATE = {
   totalPrice: null,
 };
 
-export const cartReducer = (state: any = INITIAL_STATE, action: any) => {
+export const cartReducer = (state: any = INITIAL_STATE, action: any = {}) => {
   const { type, payload } = action;
 
   switch (type) {
-    case CART_ACTION_TYPES.ADD_ITEM_TO_CART:
+    // case CART_ACTION_TYPES.ADD_ITEM_TO_CART:
+    //   return {
+    //     ...state,
+    //     ...payload,
+    //   };
+    // case CART_ACTION_TYPES.REMOVE_ITEM_FROM_CART:
+    //   return {
+    //     ...state,
+    //     ...payload,
+    //   };
+    // case CART_ACTION_TYPES.DECREMENT_ITEM_QUANTITY:
+    //   return {
+    //     ...state,
+    //     ...payload,
+    //   };
+    // case CART_ACTION_TYPES.INCREMENT_ITEM_QUANTITY:
+    //   return {
+    //     ...state,
+    //     ...payload,
+    //   };
+    case CART_ACTION_TYPES.SET_CART_ITEMS:
       return {
         ...state,
-        ...payload,
-      };
-    case CART_ACTION_TYPES.REMOVE_ITEM_FROM_CART:
-      return {
-        ...state,
-        ...payload,
-      };
-    case CART_ACTION_TYPES.DECREMENT_ITEM_QUANTITY:
-      return {
-        ...state,
-        ...payload,
-      };
-    case CART_ACTION_TYPES.INCREMENT_ITEM_QUANTITY:
-      return {
-        ...state,
-        ...payload,
+        cartItems: payload,
       };
     case CART_ACTION_TYPES.SET_CART_STATUS:
       return {
