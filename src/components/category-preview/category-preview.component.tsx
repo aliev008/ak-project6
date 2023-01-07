@@ -11,7 +11,6 @@ import {
   Title,
   Preview,
 } from "./category-preview.styles";
-
 export const CategoryPreview = ({ title, products }: CategoryInterface) => {
   return (
     <CategoryPreviewContainer>
