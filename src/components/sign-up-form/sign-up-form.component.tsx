@@ -29,11 +29,11 @@ export const SignUpForm = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     if (password === confirmedPassword) {
       try {
-        await dispatch(signUpStart(email, password, displayName));
+        dispatch(signUpStart(email, password, displayName));
         resetFormFields();
       } catch (error: any) {}
     }

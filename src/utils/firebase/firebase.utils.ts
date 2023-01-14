@@ -91,7 +91,7 @@ export const onUserAuthStateChanged = (callback: any) => {
   onAuthStateChanged(auth, callback);
 };
 
-export const getCurrentuser = () => {
+export const getCurrentUser = () => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(auth, (userAuth) => {
       unsubscribe();

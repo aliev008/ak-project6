@@ -26,12 +26,12 @@ export const SignInForm = () => {
     setFormFields({ ...formFields, [name]: value });
   };
 
-  const handleSubmit = async (event: any) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
     try {
-      await dispatch(emailSignInStart(email, password))
-      resetFormFields();      
-    } catch(error) {}
+      dispatch(emailSignInStart(email, password));
+      resetFormFields();
+    } catch (error) {}
   };
   return (
     <SignInContainer>
