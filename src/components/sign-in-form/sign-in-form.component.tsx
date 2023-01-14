@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { signInUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../form-input/form-input.component";
 import { Button } from "../button/button.component";
 
 import { SignInContainer } from "./sign-in-form.styles";
+import { useDispatch } from "react-redux";
+import { emailSignInStart } from "../../store/user/user.action";
 
 const defaultFormFields = {
   email: "",
@@ -14,6 +15,7 @@ const defaultFormFields = {
 export const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultFormFields);
   const { email, password } = formFields;
+  const dispatch = useDispatch();
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -27,21 +29,9 @@ export const SignInForm = () => {
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
-      await signInUserWithEmailAndPassword(email, password);
-      alert(`You successfully signed in!`);
-      resetFormFields();
-    } catch (error: any) {
-      switch (error.code) {
-        case "auth/wrong-password":
-          alert("Sorry, password is incorrect for this e-mail.");
-          break;
-        case "auth/user-not-found":
-          alert("Sorry, no user associated with this e-mail.");
-          break;
-        default:
-          console.error(error);
-      }
-    }
+      await dispatch(emailSignInStart(email, password))
+      resetFormFields();      
+    } catch(error) {}
   };
   return (
     <SignInContainer>

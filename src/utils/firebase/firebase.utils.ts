@@ -65,7 +65,7 @@ export const createUserDocumentFromAuth = async (
     }
   }
 
-  return docRef;
+  return snapshot;
 };
 
 export const createAuthUserWithEmailAndPassword = async (
@@ -90,6 +90,15 @@ export const signOutUser = async () => {
 export const onUserAuthStateChanged = (callback: any) => {
   onAuthStateChanged(auth, callback);
 };
+
+export const getCurrentuser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = onAuthStateChanged(auth, (userAuth) => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  })
+}
 
 export const addCollectionAndDocuments = async (
   collectionKey: string,
