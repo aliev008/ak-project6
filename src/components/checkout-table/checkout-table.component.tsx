@@ -1,4 +1,4 @@
-import { CheckoutItem } from "../../components";
+import { CheckoutItem } from "..";
 
 import { TableContainer, Table, Total } from "./checkout-table.styles";
 import { CartItemInterface } from "../../interfaces/interfaces";
@@ -7,6 +7,7 @@ import {
   selectTotalPrice,
 } from "../../store/cart/cart.selector";
 import { useSelector } from "react-redux";
+import { PaymentForm } from "../payment-form/payment-form.component";
 
 export const CheckoutTable = () => {
   const cartItems = useSelector(selectCartItems);
@@ -30,6 +31,7 @@ export const CheckoutTable = () => {
         </tbody>
       </Table>
       <Total className="total">Total Price: {totalPrice} $</Total>
+      <PaymentForm />
     </TableContainer>
   );
 };
