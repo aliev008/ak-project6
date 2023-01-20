@@ -1,11 +1,11 @@
 import { AnyAction } from 'redux'
 
-type ActionWithPayload<T, P> = {
+export type ActionWithPayload<T, P> = {
   type: T
   payload: P
 }
 
-type Action<T> = {
+export type Action<T> = {
   type: T
 }
 
