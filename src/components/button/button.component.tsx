@@ -1,41 +1,40 @@
+import { FC, ButtonHTMLAttributes } from 'react'
+
 import {
   BasicButton,
   InvertedButton,
   GoogleSigninButton,
   Spinner,
-} from "./button.style";
+} from './button.style'
 
-export const BUTTON_CLASS_TYPES: { [key: string]: any } = {
-  base: "base",
-  google: "google",
-  inverted: "inverted",
-};
-
-interface ButtonProps {
-  children: string;
-  buttonType?: string;
-  isLoading?: boolean;
-  type?: "button" | "submit" | "reset";
-  onClick?: any;
+export enum BUTTON_CLASS_TYPES {
+  base = 'base',
+  google = 'google',
+  inverted = 'inverted',
 }
 
-const getButton = (buttonType = BUTTON_CLASS_TYPES.base) =>
+export type ButtonProps = {
+  buttonType?: BUTTON_CLASS_TYPES
+  isLoading?: boolean
+} & ButtonHTMLAttributes<HTMLButtonElement>
+
+const getButton = (buttonType = BUTTON_CLASS_TYPES.base): typeof BasicButton =>
   ({
     [BUTTON_CLASS_TYPES.base]: BasicButton,
     [BUTTON_CLASS_TYPES.google]: GoogleSigninButton,
     [BUTTON_CLASS_TYPES.inverted]: InvertedButton,
-  }[buttonType]);
+  }[buttonType])
 
-export const Button = ({
+export const Button: FC<ButtonProps> = ({
   children,
   buttonType,
   isLoading,
   ...otherProps
-}: ButtonProps) => {
-  const CustomButton = getButton(buttonType);
+}) => {
+  const CustomButton = getButton(buttonType)
   return (
     <CustomButton disabled={isLoading} {...otherProps}>
       {isLoading ? <Spinner /> : children}
     </CustomButton>
-  );
-};
+  )
+}
