@@ -18,7 +18,7 @@ export const CategoriesPreview = () => {
         <Spinner />
       ) : (
         Object.keys(categoriesMap).map((title) => {
-          const products = categoriesMap[title as keyof typeof categoriesMap];
+          const products = categoriesMap[title];
           return (
             <CategoryPreview key={title} title={title} products={products} />
           );

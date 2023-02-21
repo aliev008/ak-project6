@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ProductInterface } from "../../interfaces/interfaces";
+import { ProductInterface } from "../../types/types";
 import { ProductCard } from "../../components/product-card/product-card.component";
 
 import { CategoryContainer, Title } from "./category.styles";

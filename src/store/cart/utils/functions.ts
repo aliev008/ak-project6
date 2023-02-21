@@ -1,50 +1,49 @@
-import { CartItemInterface } from "../../../interfaces/interfaces";
+import { CartItemType } from '../../../types/types'
 
-export const addCartItem = (cartItems: any, itemToAdd: CartItemInterface) => {
+export const addCartItem = (
+  cartItems: CartItemType[],
+  itemToAdd: CartItemType
+): CartItemType[] => {
   const itemExists = cartItems.some(
-    (cartItem: CartItemInterface) => cartItem.id === itemToAdd.id
-  );
+    (cartItem: CartItemType) => cartItem.id === itemToAdd.id
+  )
   if (itemExists) {
-    return cartItems.map((cartItem: CartItemInterface) =>
+    return cartItems.map((cartItem: CartItemType) =>
       cartItem.id === itemToAdd.id
         ? { ...cartItem, quantity: cartItem.quantity + 1 }
         : { ...cartItem }
-    );
+    )
   }
-  return [...cartItems, { ...itemToAdd, quantity: 1 }];
-};
+  return [...cartItems, { ...itemToAdd, quantity: 1 }]
+}
 
 export const removeCartItem = (
-  cartItems: any,
-  itemToRemove: CartItemInterface
-) => {
+  cartItems: CartItemType[],
+  itemToRemove: CartItemType
+): CartItemType[] => {
   return cartItems.filter(
-    (cartItem: CartItemInterface) => cartItem.id !== itemToRemove.id
-  );
-};
+    (cartItem: CartItemType) => cartItem.id !== itemToRemove.id
+  )
+}
 
-export const increaseItemQuantity = (
-  cartItems: any,
-  item: CartItemInterface
-) => {
-  return cartItems.map((cartItem: CartItemInterface) =>
+export const increaseItemQuantity = (cartItems: CartItemType[], item: CartItemType): CartItemType[] => {
+  return cartItems.map((cartItem: CartItemType) =>
     cartItem.id === item.id
       ? { ...cartItem, quantity: cartItem.quantity + 1 }
       : { ...cartItem }
-  );
-};
+  )
+}
 
-export const decreaseItemQuantity = (
-  cartItems: any,
-  item: CartItemInterface
-) => {
+export const decreaseItemQuantity = (cartItems: CartItemType[], item: CartItemType): CartItemType[] => {
   return cartItems
-    .map((cartItem: CartItemInterface) => {
+    .map((cartItem: CartItemType) => {
       return cartItem.id === item.id
         ? cartItem.quantity > 1
           ? { ...cartItem, quantity: cartItem.quantity - 1 }
-          : null
-        : { ...cartItem };
+          // : null
+          : { ...cartItem }
+        : { ...cartItem }
     })
-    .filter((cartIem: CartItemInterface) => cartIem !== null);
-};
+    // .filter((cartItem: any) => cartItem !== null)
+    .filter((cartItem: any) => cartItem.quantity >= 1)
+}

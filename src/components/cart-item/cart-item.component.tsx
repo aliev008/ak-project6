@@ -1,8 +1,8 @@
-import { CartItemInterface } from "../../interfaces/interfaces";
+import { CartItemType } from "../../types/types";
 
 import { CartItemContainer,ImageDetails } from "./cart-item.styles";
 
-export const CartItem = ({ cartItem }: {cartItem: CartItemInterface}) => {
+export const CartItem = ({ cartItem }: {cartItem: CartItemType}) => {
   const { imageUrl, price, name, quantity } = cartItem;
   return (
     <CartItemContainer>

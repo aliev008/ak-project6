@@ -1,3 +1,5 @@
+import { CategoryItem } from "../store/category/category.types";
+
 export interface ProductInterface {
   id: number;
   name: string;
@@ -6,11 +8,15 @@ export interface ProductInterface {
   quantity?: number;
 }
 
-export interface CartItemInterface {
-  id: number;
-  name: string;
-  imageUrl: string;
-  price: number;
+// export interface CartItemInterface {
+//   id: number;
+//   name: string;
+//   imageUrl: string;
+//   price: number;
+//   quantity: number;
+// }
+
+export type CartItemType = CategoryItem & {
   quantity: number;
 }
 

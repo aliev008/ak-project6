@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as RemoveSymbol } from "../../assets/x-symbol.svg";
-import { CartItemInterface } from "../../interfaces/interfaces";
+import { CartItemType } from "../../types/types";
 import {
   decrementQuantity,
   incrementQuantity,
@@ -13,7 +13,7 @@ import { CountArrow } from "./checkout-item.styles";
 export const CheckoutItem = ({
   checkoutItem,
 }: {
-  checkoutItem: CartItemInterface;
+  checkoutItem: CartItemType;
 }) => {
   const { imageUrl, name, quantity, price } = checkoutItem;
   const cartItems = useSelector(selectCartItems);

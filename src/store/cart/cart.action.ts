@@ -1,35 +1,65 @@
-import { CartItemInterface } from "../../interfaces/interfaces";
-import { createAction } from "../../utils/reducer/createAction.utils";
-import { CART_ACTION_TYPES } from "./cart.types";
+import { CartItemType } from '../../types/types'
+import {
+  ActionWithPayload,
+  createAction,
+  withMatcher,
+} from '../../utils/reducer/createAction.utils'
+import { CART_ACTION_TYPES } from './cart.types'
 import {
   addCartItem,
   decreaseItemQuantity,
   increaseItemQuantity,
   removeCartItem,
-} from "./utils/functions";
+} from './utils/functions'
 
-export const setCartStatus = (newStatus: boolean) =>
-  createAction(CART_ACTION_TYPES.SET_CART_STATUS, newStatus);
+export type SetCartStatus = ActionWithPayload<
+  CART_ACTION_TYPES.SET_CART_STATUS,
+  boolean
+>
 
-export const addItemToCart = (cartItems: any, itemToAdd: CartItemInterface) => {
-  const payload = addCartItem(cartItems, itemToAdd);
-  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, payload);
-};
+export type SetCartItems = ActionWithPayload<
+  CART_ACTION_TYPES.SET_CART_ITEMS,
+  CartItemType[]
+>
+
+export const setCartStatus = withMatcher(
+  (newStatus: boolean): SetCartStatus =>
+    createAction(CART_ACTION_TYPES.SET_CART_STATUS, newStatus)
+)
+
+export const setCartItems = withMatcher(
+  (cartItems: CartItemType[]): SetCartItems =>
+    createAction(CART_ACTION_TYPES.SET_CART_ITEMS, cartItems)
+)
+
+export const addItemToCart = (
+  cartItems: CartItemType[],
+  itemToAdd: CartItemType
+): SetCartItems => {
+  const payload = addCartItem(cartItems, itemToAdd)
+  return setCartItems(payload)
+}
 
 export const removeItemFromCart = (
-  cartItems: any,
-  itemToRemove: CartItemInterface
-) => {
-  const payload = removeCartItem(cartItems, itemToRemove);
-  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, payload);
-};
+  cartItems: CartItemType[],
+  itemToRemove: CartItemType
+): SetCartItems => {
+  const payload = removeCartItem(cartItems, itemToRemove)
+  return setCartItems(payload)
+}
 
-export const incrementQuantity = (cartItems: any, item: CartItemInterface) => {
-  const payload = increaseItemQuantity(cartItems, item);
-  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, payload);
-};
+export const incrementQuantity = (
+  cartItems: CartItemType[],
+  item: CartItemType
+): SetCartItems => {
+  const payload = increaseItemQuantity(cartItems, item)
+  return setCartItems(payload)
+}
 
-export const decrementQuantity = (cartItems: any, item: CartItemInterface) => {
-  const payload = decreaseItemQuantity(cartItems, item);
-  return createAction(CART_ACTION_TYPES.SET_CART_ITEMS, payload);
-};
+export const decrementQuantity = (
+  cartItems: CartItemType[],
+  item: CartItemType
+): SetCartItems => {
+  const payload = decreaseItemQuantity(cartItems, item)
+  return setCartItems(payload)
+}

@@ -1,7 +1,7 @@
 import { CheckoutItem } from "..";
 
 import { TableContainer, Table, Total } from "./checkout-table.styles";
-import { CartItemInterface } from "../../interfaces/interfaces";
+import { CartItemType } from "../../types/types";
 import {
   selectCartItems,
   selectTotalPrice,
@@ -25,7 +25,7 @@ export const CheckoutTable = () => {
           </tr>
         </thead>
         <tbody>
-          {cartItems.map((cartItem: CartItemInterface) => (
+          {cartItems.map((cartItem: CartItemType) => (
             <CheckoutItem key={cartItem.id} checkoutItem={cartItem} />
           ))}
         </tbody>

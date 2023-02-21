@@ -8,7 +8,7 @@ import {
   EmptyMessage,
   CartItems,
 } from "./cart-dropdown.styles";
-import { CartItemInterface } from "../../interfaces/interfaces";
+import { CartItemType } from "../../types/types";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../../store/cart/cart.selector";
 
@@ -24,7 +24,7 @@ export const CartDropdown = () => {
     <CartDropdownContainer>
       <CartItems>
         {cartItems.length ? (
-          cartItems.map((cartItem: CartItemInterface) => (
+          cartItems.map((cartItem: CartItemType) => (
             <CartItem key={cartItem.id} cartItem={cartItem} />
           ))
         ) : (

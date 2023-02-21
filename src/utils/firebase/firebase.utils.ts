@@ -8,6 +8,8 @@ import {
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  User,
+  NextOrObserver
 } from "firebase/auth";
 import {
   getFirestore,
@@ -18,7 +20,10 @@ import {
   writeBatch,
   query,
   getDocs,
+  QueryDocumentSnapshot,
 } from "firebase/firestore";
+import { Category } from "../../store/category/category.types";
+import { AdditionalInformation, ObjectToAdd, UserData } from "./firebase.types";
 
 const firebaseConfig = {
   apiKey: "AIzaSyByEJWgDNVukW3fo6ILIPUsrDN9yZKNOhY",
@@ -43,9 +48,9 @@ export const signInWithGoogleRedirect = () =>
   signInWithRedirect(auth, provider);
 
 export const createUserDocumentFromAuth = async (
-  userAuth: any,
-  additionalInfo: {} = {}
-) => {
+  userAuth: User,
+  additionalInfo: AdditionalInformation = {} as AdditionalInformation
+): Promise<QueryDocumentSnapshot<UserData>>  => {
   const docRef = await doc(db, "users", userAuth.uid);
   const snapshot = await getDoc(docRef);
 
@@ -65,7 +70,7 @@ export const createUserDocumentFromAuth = async (
     }
   }
 
-  return snapshot;
+  return snapshot as QueryDocumentSnapshot<UserData>;
 };
 
 export const createAuthUserWithEmailAndPassword = async (
@@ -87,11 +92,11 @@ export const signOutUser = async () => {
   await signOut(auth);
 };
 
-export const onUserAuthStateChanged = (callback: any) => {
+export const onAuthStateChangedListener = (callback: NextOrObserver<User>) => {
   onAuthStateChanged(auth, callback);
 };
 
-export const getCurrentUser = () => {
+export const getCurrentUser = (): Promise<User | null> => {
   return new Promise((resolve, reject) => {
     const unsubscribe = onAuthStateChanged(auth, (userAuth) => {
       unsubscribe();
@@ -100,14 +105,14 @@ export const getCurrentUser = () => {
   })
 }
 
-export const addCollectionAndDocuments = async (
+export const addCollectionAndDocuments = async<T extends ObjectToAdd>(
   collectionKey: string,
-  objectsToAdd: any
-) => {
+  objectsToAdd: T[]
+): Promise<void> => {
   const collectionRef = collection(db, collectionKey);
   const batch = writeBatch(db);
 
-  objectsToAdd.forEach((object: any) => {
+  objectsToAdd.forEach((object: ObjectToAdd) => {
     const docRef = doc(collectionRef, object.title.toLowerCase());
     batch.set(docRef, object);
   });
@@ -115,13 +120,13 @@ export const addCollectionAndDocuments = async (
   await batch.commit();
 };
 
-export const getCategoriesAndDocuments = async () => {
+export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
   const collectionRef = collection(db, "categories");
   const q = query(collectionRef);
 
   const querySnapshot = await getDocs(q);
 
-  const categoryMap = querySnapshot.docs.map((snaphot) => snaphot.data());
+  const categoryMap = querySnapshot.docs.map((snaphot) => snaphot.data()) as Category[];
 
   return categoryMap;
 };

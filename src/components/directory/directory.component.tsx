@@ -1,7 +1,7 @@
 import { DirectoryItem } from '../directory-item/directory-item';
 import { DirectoryContainer } from './directory.styles';
 
-import { DirectoryType } from '../../interfaces/interfaces';
+import { DirectoryType } from '../../types/types';
 
 const categories: DirectoryType = [
   {

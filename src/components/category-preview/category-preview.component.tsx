@@ -4,7 +4,7 @@ import { ProductCard } from "../product-card/product-card.component";
 import {
   CategoryInterface,
   ProductInterface,
-} from "../../interfaces/interfaces";
+} from "../../types/types";
 
 import {
   CategoryPreviewContainer,
