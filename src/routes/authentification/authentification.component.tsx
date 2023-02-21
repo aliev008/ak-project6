@@ -1,5 +1,5 @@
 import { SignUpForm, SignInForm } from "../../components";
-import { Button } from "../../components/button/button.component";
+import { Button, BUTTON_CLASS_TYPES } from "../../components/button/button.component";
 
 import {
   FormsContainer,
@@ -20,7 +20,7 @@ export const Authentification = () => {
     <>
       <GoogleSignInContainer>
         <h2>Sign In With Google Account</h2>
-        <Button buttonType="google" onClick={signInPopupHandler}>
+        <Button buttonType={BUTTON_CLASS_TYPES.google} onClick={signInPopupHandler}>
           Click here to Sign In with Google
         </Button>
         <br />

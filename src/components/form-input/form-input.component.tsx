@@ -1,34 +1,33 @@
-import { Group, FormInputLabel, Input } from "./form-input.styles";
+import { Group, FormInputLabel, Input } from './form-input.styles'
+import { FC, InputHTMLAttributes } from 'react'
 
-interface FormProps {
-  label: string;
-  type?: string;
-  name?: string;
-  value: string;
-  readOnly?: boolean | undefined;
-  onChange?: (event: any) => void;
-  onFocus?: any;
-  required?: boolean;
-  autoComplete?: string;
-}
+type FormInputProps = {
+  label?: string
+} & InputHTMLAttributes<HTMLInputElement>
 
-const FormInput = ({ label, ...otherProps }: FormProps) => {
+const FormInput: FC<FormInputProps> = ({ label, ...otherProps }) => {
   return (
     <Group>
       <Input
         readOnly
-        onFocus={(e: Event) =>
-          (e.target as HTMLInputElement).removeAttribute("readonly")
+        onFocus={(e) =>
+          (e.target as HTMLInputElement).removeAttribute('readonly')
         }
         {...otherProps}
       />
       {label && (
-        <FormInputLabel shrink={otherProps.value.length}>
+        <FormInputLabel
+          shrink={Boolean(
+            otherProps.value &&
+              otherProps.value === 'string' &&
+              otherProps.value.length
+          )}
+        >
           {label}
         </FormInputLabel>
       )}
     </Group>
-  );
-};
+  )
+}
 
-export default FormInput;
+export default FormInput
