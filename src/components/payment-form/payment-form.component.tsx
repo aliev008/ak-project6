@@ -1,14 +1,17 @@
-import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
-import { useState } from "react";
-import { useSelector } from "react-redux";
-import { selectTotalPrice } from "../../store/cart/cart.selector";
-import { selectCurrentUser } from "../../store/user/user.selector";
-import { BUTTON_CLASS_TYPES } from "../button/button.component";
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import { StripeCardElement } from '@stripe/stripe-js';
+import { useState, FormEvent } from 'react';
+import { useSelector } from 'react-redux';
+import { selectTotalPrice } from '../../store/cart/cart.selector';
+import { selectCurrentUser } from '../../store/user/user.selector';
+import { BUTTON_CLASS_TYPES } from '../button/button.component';
 import {
   PaymentFormContainer,
   FormContainer,
   PaymentButton,
-} from "./payment-form.styles";
+} from './payment-form.styles';
+
+const ifValidCardElement = (card: null | StripeCardElement): card is StripeCardElement => card !== null;
 
 export const PaymentForm = () => {
   const stripe = useStripe();
@@ -18,7 +21,7 @@ export const PaymentForm = () => {
 
   const [isProccessingPayment, setIsProccessingPayment] = useState(false);
 
-  const paymentHandler = async (event: any) => {
+  const paymentHandler = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
@@ -27,10 +30,10 @@ export const PaymentForm = () => {
 
     setIsProccessingPayment(true);
 
-    const response = await fetch("/.netlify/functions/create-payment-intent", {
-      method: "POST",
+    const response = await fetch('/.netlify/functions/create-payment-intent', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({ amount: amount * 100 }),
     }).then((response) => response.json());
@@ -39,21 +42,24 @@ export const PaymentForm = () => {
       paymentIntent: { client_secret },
     } = response;
 
+    const cardDetails = elements.getElement(CardElement);
+    if (!ifValidCardElement(cardDetails)) return;
+
     const paymentResult = await stripe.confirmCardPayment(client_secret, {
       payment_method: {
-        card: elements.getElement(CardElement),
+        card: cardDetails,
         billing_details: {
-          name: user ? user.displayName : "Guest",
+          name: user ? user.displayName : 'Guest',
         },
       },
-    } as any);
+    });
 
     setIsProccessingPayment(false);
 
     if (paymentResult.error) {
       alert(paymentResult.error);
     } else {
-      if (paymentResult.paymentIntent.status === "succeeded") {
+      if (paymentResult.paymentIntent.status === 'succeeded') {
         alert(`Payment successfull`);
       }
     }

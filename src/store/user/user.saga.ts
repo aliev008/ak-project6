@@ -19,10 +19,9 @@ import {
   signInWithGooglePopup,
   signOutUser,
 } from '../../utils/firebase/firebase.utils'
-import { User } from 'firebase/auth'
+import { User, AuthError, AuthErrorCodes } from 'firebase/auth'
 import {
   AdditionalInformation,
-  UserData,
 } from '../../utils/firebase/firebase.types'
 
 export function* getUserDocSnapshot(
@@ -83,11 +82,11 @@ export function* signInWithEmail({
     }
   } catch (error) {
     yield* put(singInFailed(error as Error))
-    switch ((error as any).code) {
-      case 'auth/wrong-password':
+    switch ((error as AuthError).code) {
+      case AuthErrorCodes.INVALID_PASSWORD:
         alert('Sorry, password is incorrect for this e-mail.')
         break
-      case 'auth/user-not-found':
+      case AuthErrorCodes.USER_DELETED:
         alert('Sorry, no user associated with this e-mail.')
         break
       default:
@@ -113,7 +112,7 @@ export function* signUp({
     }
   } catch (error) {
     yield* put(signUpFailed(error as Error))
-    if ((error as any).code === 'auth/email-already-in-use') {
+    if ((error as AuthError).code === AuthErrorCodes.EMAIL_EXISTS) {
       alert('Sorry. User with this email is already exist')
     } else {
       alert('Password confirm went wrong!')

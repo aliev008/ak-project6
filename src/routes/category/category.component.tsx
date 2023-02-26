@@ -11,16 +11,20 @@ import {
 } from "../../store/category/category.selector";
 import { Spinner } from "../../components/spinner/spinner.component";
 
+type CategoryRouteParams = {
+  category: string;
+}
+
 export const Category = () => {
-  const { category } = useParams();
+  const { category } = useParams<keyof CategoryRouteParams>() as CategoryRouteParams;
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectIsLoading);
   const [products, setProducts] = useState(
-    categoriesMap[category as keyof typeof categoriesMap]
+    categoriesMap[category]
   );
 
   useEffect(() => {
-    setProducts(categoriesMap[category as keyof typeof categoriesMap]);
+    setProducts(categoriesMap[category]);
   }, [categoriesMap, category]);
 
   return (

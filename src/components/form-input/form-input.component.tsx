@@ -10,16 +10,14 @@ const FormInput: FC<FormInputProps> = ({ label, ...otherProps }) => {
     <Group>
       <Input
         readOnly
-        onFocus={(e) =>
-          (e.target as HTMLInputElement).removeAttribute('readonly')
-        }
+        onFocus={(e) => e.target.removeAttribute('readonly')}
         {...otherProps}
       />
       {label && (
         <FormInputLabel
           shrink={Boolean(
             otherProps.value &&
-              otherProps.value === 'string' &&
+              typeof otherProps.value === 'string' &&
               otherProps.value.length
           )}
         >
