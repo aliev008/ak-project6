@@ -1,5 +1,6 @@
 import { SignUpForm, SignInForm } from "../../components";
 import { Button, BUTTON_CLASS_TYPES } from "../../components/button/button.component";
+import { MouseEvent } from "react";
 
 import {
   FormsContainer,
@@ -11,7 +12,7 @@ import { googleSignInStart } from "../../store/user/user.action";
 export const Authentification = () => {
   const dispatch = useDispatch();
 
-  const signInPopupHandler = async (e: any) => {
+  const signInPopupHandler = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     dispatch(googleSignInStart());
   };
