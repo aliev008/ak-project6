@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ProductInterface } from "../../types/types";
 import { ProductCard } from "../../components/product-card/product-card.component";
 
 import { CategoryContainer, Title } from "./category.styles";
@@ -10,6 +9,7 @@ import {
   selectIsLoading,
 } from "../../store/category/category.selector";
 import { Spinner } from "../../components/spinner/spinner.component";
+import { CategoryItem } from "../../store/category/category.types";
 
 type CategoryRouteParams = {
   category: string;
@@ -37,7 +37,7 @@ export const Category = () => {
       ) : (
         <CategoryContainer>
           {products &&
-            products.map((product: ProductInterface) => {
+            products.map((product: CategoryItem) => {
               return <ProductCard key={product.id} product={product} />;
             })}
         </CategoryContainer>

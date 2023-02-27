@@ -8,7 +8,7 @@ import {
   EmptyMessage,
   CartItems,
 } from "./cart-dropdown.styles";
-import { CartItemType } from "../../types/types";
+import { CartItemType } from "../../store/cart/cart.types";
 import { useSelector } from "react-redux";
 import { selectCartItems } from "../../store/cart/cart.selector";
 

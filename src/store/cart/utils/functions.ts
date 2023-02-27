@@ -1,5 +1,5 @@
-import { CartItemType } from '../../../types/types'
-import { CategoryItem } from '../../category/category.types';
+import { CartItemType } from '../cart.types'
+import { CategoryItem } from '../../category/category.types'
 
 export const addCartItem = (
   cartItems: CartItemType[],
@@ -27,7 +27,10 @@ export const removeCartItem = (
   )
 }
 
-export const increaseItemQuantity = (cartItems: CartItemType[], item: CartItemType): CartItemType[] => {
+export const increaseItemQuantity = (
+  cartItems: CartItemType[],
+  item: CartItemType
+): CartItemType[] => {
   return cartItems.map((cartItem: CartItemType) =>
     cartItem.id === item.id
       ? { ...cartItem, quantity: cartItem.quantity + 1 }
@@ -35,16 +38,21 @@ export const increaseItemQuantity = (cartItems: CartItemType[], item: CartItemTy
   )
 }
 
-export const decreaseItemQuantity = (cartItems: CartItemType[], item: CartItemType): CartItemType[] => {
-  return cartItems
-    .map((cartItem: CartItemType) => {
-      return cartItem.id === item.id
-        ? cartItem.quantity > 1
-          ? { ...cartItem, quantity: cartItem.quantity - 1 }
-          // : null
+export const decreaseItemQuantity = (
+  cartItems: CartItemType[],
+  item: CartItemType
+): CartItemType[] => {
+  return (
+    cartItems
+      .map((cartItem: CartItemType) => {
+        return cartItem.id === item.id
+          ? cartItem.quantity > 1
+            ? { ...cartItem, quantity: cartItem.quantity - 1 }
+            : // : null
+              { ...cartItem }
           : { ...cartItem }
-        : { ...cartItem }
-    })
-    // .filter((cartItem: any) => cartItem !== null)
-    .filter((cartItem: any) => cartItem.quantity >= 1)
+      })
+      // .filter((cartItem: any) => cartItem !== null)
+      .filter((cartItem: any) => cartItem.quantity >= 1)
+  )
 }

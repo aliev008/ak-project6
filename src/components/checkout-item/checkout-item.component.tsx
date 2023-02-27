@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as RemoveSymbol } from "../../assets/x-symbol.svg";
-import { CartItemType } from "../../types/types";
+import { CartItemType } from "../../store/cart/cart.types";
 import {
   decrementQuantity,
   incrementQuantity,

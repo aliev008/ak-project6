@@ -1,21 +1,12 @@
-// export const CART_ACTION_TYPES = {
-//   SET_CART_STATUS: "cart/SET_CART_STATUS",
-//   SET_CART_ITEMS: "cart/SET_CART_ITEMS",
-//   ADD_ITEM_TO_CART: "cart/ADD_ITEMS_TO_CART",
-//   REMOVE_ITEM_FROM_CART: "cart/REMOVE_ITEM_FROM_CART",
-//   INCREMENT_ITEM_QUANTITY: "cart/INCREMENT_ITEM_QUANTITY",
-//   DECREMENT_ITEM_QUANTITY: "cart/DECREMENT_ITEM_QUANTITY",
-// };
-
-import { CartItemType } from "../../types/types"
+import { CategoryItem } from "../category/category.types";
 
 export enum CART_ACTION_TYPES {
   SET_CART_STATUS = 'cart/SET_CART_STATUS',
   SET_CART_ITEMS = 'cart/SET_CART_ITEMS',
-  // ADD_ITEM_TO_CART = 'cart/ADD_ITEMS_TO_CART',
-  // REMOVE_ITEM_FROM_CART = 'cart/REMOVE_ITEM_FROM_CART',
-  // INCREMENT_ITEM_QUANTITY = 'cart/INCREMENT_ITEM_QUANTITY',
-  // DECREMENT_ITEM_QUANTITY = 'cart/DECREMENT_ITEM_QUANTITY',
+}
+
+export type CartItemType = CategoryItem & {
+  quantity: number;
 }
 
 export type CartItemsMap = {

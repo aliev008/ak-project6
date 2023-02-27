@@ -7,7 +7,7 @@ import { Button, BUTTON_CLASS_TYPES } from "../button/button.component";
 
 import { ProductCardContainer, Footer } from "./product-card.styles";
 
-interface ProductCardProps {
+type ProductCardProps = {
   product: CategoryItem;
 }
 

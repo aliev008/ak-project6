@@ -1,7 +1,7 @@
 import { CheckoutItem } from "..";
 
 import { TableContainer, Table, Total } from "./checkout-table.styles";
-import { CartItemType } from "../../types/types";
+import { CartItemType } from "../../store/cart/cart.types";
 import {
   selectCartItems,
   selectTotalPrice,

@@ -1,4 +1,4 @@
-import { CartItemType } from "../../types/types";
+import { CartItemType } from "../../store/cart/cart.types";
 import { FC } from "react";
 
 import { CartItemContainer, ImageDetails } from "./cart-item.styles";
