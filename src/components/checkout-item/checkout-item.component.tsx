@@ -1,3 +1,4 @@
+import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as RemoveSymbol } from "../../assets/x-symbol.svg";
 import { CartItemType } from "../../types/types";
@@ -10,10 +11,12 @@ import { selectCartItems } from "../../store/cart/cart.selector";
 
 import { CountArrow } from "./checkout-item.styles";
 
-export const CheckoutItem = ({
-  checkoutItem,
-}: {
+type CheckoutItemProps = {
   checkoutItem: CartItemType;
+};
+
+export const CheckoutItem: FC<CheckoutItemProps> = ({
+  checkoutItem,
 }) => {
   const { imageUrl, name, quantity, price } = checkoutItem;
   const cartItems = useSelector(selectCartItems);
