@@ -1,15 +1,17 @@
+import { FC } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart, setCartStatus } from "../../store/cart/cart.action";
 import { selectCartItems, selectCartStatus } from "../../store/cart/cart.selector";
+import { CategoryItem } from "../../store/category/category.types";
 import { Button, BUTTON_CLASS_TYPES } from "../button/button.component";
 
 import { ProductCardContainer, Footer } from "./product-card.styles";
 
 interface ProductCardProps {
-  product: any;
+  product: CategoryItem;
 }
 
-export const ProductCard = ({ product }: ProductCardProps) => {
+export const ProductCard: FC<ProductCardProps> = ({ product }) => {
   const { name, imageUrl, price } = product;
   const dispatch = useDispatch();
   const isCartOpen = useSelector(selectCartStatus);
