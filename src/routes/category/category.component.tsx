@@ -13,9 +13,9 @@ import { CategoryItem } from "../../store/category/category.types";
 
 type CategoryRouteParams = {
   category: string;
-}
+};
 
-export const Category = () => {
+const Category = () => {
   const { category } = useParams<keyof CategoryRouteParams>() as CategoryRouteParams;
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectIsLoading);
@@ -45,3 +45,5 @@ export const Category = () => {
     </>
   );
 };
+
+export default Category;

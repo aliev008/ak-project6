@@ -8,7 +8,7 @@ import {
   selectIsLoading,
 } from "../../store/category/category.selector";
 
-export const CategoriesPreview = () => {
+const CategoriesPreview = () => {
   const categoriesMap = useSelector(selectCategoriesMap);
   const isLoading = useSelector(selectIsLoading);
 
@@ -27,3 +27,5 @@ export const CategoriesPreview = () => {
     </>
   );
 };
+
+export default CategoriesPreview;

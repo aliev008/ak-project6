@@ -1,9 +1,11 @@
 import { CheckoutTable } from "../../components";
 
-export const Checkout = () => {
+const Checkout = () => {
   return (
     <>
       <CheckoutTable />
     </>
   );
 };
+
+export default Checkout;

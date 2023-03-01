@@ -15,7 +15,7 @@ import { selectCurrentUser } from "../../store/user/user.selector";
 import { selectCartStatus } from "../../store/cart/cart.selector";
 import { signOutStart } from "../../store/user/user.action";
 
-export const Navigation = () => {
+const Navigation = () => {
   const currentUser = useSelector(selectCurrentUser);
   const isCartOpen = useSelector(selectCartStatus);
   const dispatch = useDispatch();
@@ -47,3 +47,5 @@ export const Navigation = () => {
     </>
   );
 };
+
+export default Navigation;

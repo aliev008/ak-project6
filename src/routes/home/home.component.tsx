@@ -1,3 +1,5 @@
 import { Directory } from "../../components";
 
-export const Home = () => <Directory />;
+const Home = () => <Directory />;
+
+export default Home;

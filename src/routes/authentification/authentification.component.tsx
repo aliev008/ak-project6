@@ -9,7 +9,7 @@ import {
 import { useDispatch } from "react-redux";
 import { googleSignInStart } from "../../store/user/user.action";
 
-export const Authentification = () => {
+const Authentification = () => {
   const dispatch = useDispatch();
 
   const signInPopupHandler = async (e: MouseEvent<HTMLButtonElement>) => {
@@ -33,3 +33,5 @@ export const Authentification = () => {
     </>
   );
 };
+
+export default Authentification;
