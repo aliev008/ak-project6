@@ -16,6 +16,15 @@ export const Footer = styled.div`
     .price {
       width: 10%;
     }
+
+    @media screen and (max-width: 800px) {
+      .name {
+        width: 85%;
+      }
+  
+      .price {
+        width: 15%;
+      }
 `;
 
 export const ProductCardContainer = styled.div`
@@ -49,6 +58,24 @@ export const ProductCardContainer = styled.div`
     button {
       opacity: 0.85;
       display: flex;
+    }
+  }
+
+  @media screen and (max-width: 800px) {
+    button {
+    display: block;
+    opacity: 0.9;
+    min-width: unset;
+    }
+
+    &:hover {
+      img {
+        opacity: unset; 
+      }
+  
+      button {
+        opacity: unset;
+      }
     }
   }
 `;
