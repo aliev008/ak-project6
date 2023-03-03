@@ -5,6 +5,11 @@ export const FormsContainer = styled.div`
     width: 70%;
     margin: 0 auto;
     justify-content: space-around;
+
+    @media screen and (max-width: 800px) {
+        flex-wrap: wrap;
+        
+    }
 `
 
 export const GoogleSignInContainer = styled.div`
